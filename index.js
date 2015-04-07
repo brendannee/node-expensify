@@ -272,7 +272,7 @@ var Client = module.exports = function(config) {
 
     var uploadTransaction = {
       action: 'UploadReceipt',
-      file: 'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA70lEQVR42qWTSwrCMBCG3XgOL+NBPINrt648irhxIW584LNWUtsqgo/61pXoRpro5jcjIiVGrTTwkZDMfITMJKYbmWwuLklLzsRzHdeEapOTkrEECmM6+5aYkOQl+EGeYtXklMSXICQ+5QQFF10gG9gQt9snySUogIrRZ5hM51iuNzAtWyv5Khg4LnwuYNkuxPX6n6DVNTGde+iYDIViCZvtDi2jH15guyNwzgNv4YALEU5Qa7Yf194fDi+c4egxVxvt3wIKPp5O8FYrzLwFQWvaIxSBpozlSh0Gs96u22MWnSlljNxI0Vs5+meK/J3vtUL+kls1eLwAAAAASUVORK5CYII=',
+      file: transaction.file,
       transaction: JSON.stringify({
         created: transaction.created,
         merchant: transaction.merchant,
