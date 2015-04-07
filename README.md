@@ -69,6 +69,24 @@ expensify.createDistanceTransaction({
 }, function(e, body) {
   console.log('Distance Transaction created');
 });
+```
+
+Upload a receipt
+
+```javascript
+expensify.uploadReceipt({
+  file: 'R0lGODlhEAAQAKUAAAAAABbkKBfhKRXlJxfiKBjgKRndKhrbKxzYKxbjKBneKhrcKhvZKxzXLB7VLRjfKRzYLB3WLBrbKh7ULR/SLh3VLR/TLSDQLiHOLyLLMCTJMB/RLiHPLyLMLyPKMCTIMSbFMifDMyXGMSjBMym/NCfCMyq9NCu7NSXGMifDMim+NCq8NSu5NSu6Nf///////////////////////////////////////////////////////////////////////yH5BAEKAD8ALAAAAAAQABAAAAZlwJ9wSCwafwDAsZgMCJJL5IBQMBwQSiMgIVAsGA1HlvkwACAR6BEgYQAmFLW2UbFcMBnNmLnhdDwfICF7REkfIgAjJIRDSSAlACYnjEgoKSMqKywslAAlJCYtm5RCSaOkhahRRkEAOw==',
+  created: '2015-04-07',
+  merchant: 'Tire Emporium',
+  amount: 2299,
+  currency: 'USD',
+  comment: 'New tires for my car',
+  sso: sso,
+  partnerUserId: 'testuser@test.com'
+}, function(e, body) {
+  console.log('Receipt uploaded');
+});
+```
 
 ```
 
