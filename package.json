@@ -1,0 +1,26 @@
+{
+  "name": "expensify",
+  "description": "Node.js library to access the Expensify API",
+  "version": "0.1.0",
+  "author": {
+    "name": "Brendan Nee",
+    "email": "me@bn.ee",
+    "url": "http://bn.ee"
+  },
+  "homepage": "http://github.com/brendannee/node-expensify",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/brendannee/node-expensify.git"
+  },
+  "dependencies": {
+    "request": "~2.55.0"
+  },
+  "main" : ".",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "licenses": [{
+    "type": "The MIT License",
+    "url": "http://www.opensource.org/licenses/mit-license.php"
+  }]
+}
