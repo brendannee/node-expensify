@@ -297,4 +297,75 @@ var Client = module.exports = function(config) {
       }
     });
   };
+
+  /**
+   *  Client#fetchReceipt(transaction) -> null
+   *    - transaction (Object): Object containing transaction
+   *      - location (String): URL of hosted image
+   *      - created (String): Date of the trip
+   *      - merchant (String): Merchant name
+   *      - amount (Integer): Amount in cents as an integer
+   *      - currency (String): ISO 4217 currency code of the transaction
+   *      - comment (String): Tranaction comment
+   *      - sso (String): Expensify sso
+   *      - partnerUserId (String): Partner user ID
+   *
+   *  ##### Example
+   *
+   *    expensify.fetchReceipt({
+   *      location: 'http://s3.amazon.com/image.gif',
+   *      created: '2015-04-07',
+   *      merchant: 'Tire Emporium',
+   *      amount: 2299,
+   *      currency: 'USD',
+   *      comment: 'A trip to the store',
+   *      sso: '675sd98769sd69sd',
+   *      partnerUserID: 'testuser@test.com'
+   *    });
+   **/
+  this.fetchReceipt = function(transaction, cb) {
+    var self = this;
+
+    if(!transaction.sso) {
+      throw new Error('No Expensify SSO available');
+    }
+
+    if(!this.config.expensifyPartnerName) {
+      throw new Error('No Expensify partner name provided');
+    }
+
+    if(!transaction.partnerUserId) {
+      throw new Error('No partner user id provided');
+    }
+
+    var url = expensifyAPIURL + '?action=FetchReceipt';
+
+    var fetchTransaction = {
+      action: 'FetchReceipt',
+      location: transaction.location,
+      transaction: JSON.stringify({
+        created: transaction.created,
+        merchant: transaction.merchant,
+        amount: transaction.amount,
+        currency: transaction.currency
+      }),
+      comment: transaction.comment,
+      sso: transaction.sso,
+      partnerName: this.config.expensifyPartnerName,
+      partnerUserID: transaction.partnerUserId
+    };
+
+    request.post({url: url, form: fetchTransaction}, function(e, r, body) {
+      if(e) cb(e);
+
+      if(r.statusCode === 200) {
+        cb(null, body);
+      } else if(r.statusCode === 407) {
+        cb(new Error('Expensify sso expired'));
+      } else {
+        return cb(new Error(body || 'Error fetching receipt'));
+      }
+    });
+  };
+
 }).call(Client.prototype);

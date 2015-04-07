@@ -88,6 +88,23 @@ expensify.uploadReceipt({
 });
 ```
 
+
+Fetch a receipt from a URL
+
+```javascript
+expensify.fetchReceipt({
+  location: 'http://we.are.expensify.com/assets/img/icon-rounded.png',
+  created: '2015-04-07',
+  merchant: 'Tire Emporium',
+  amount: 2299,
+  currency: 'USD',
+  comment: 'New tires for my car',
+  sso: sso,
+  partnerUserId: 'testuser@test.com'
+}, function(e, body) {
+  console.log('Receipt fetched');
+});
+
 ```
 
 ## LICENSE
