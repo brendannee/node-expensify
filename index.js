@@ -124,15 +124,15 @@ var Client = module.exports = function(config) {
     var self = this;
 
     if(!transaction.sso) {
-      throw new Error('No Expensify SSO available');
+      cb(new Error('No Expensify SSO available'));
     }
 
     if(!this.config.expensifyPartnerName) {
-      throw new Error('No Expensify partner name provided');
+      cb(new Error('No Expensify partner name provided'));
     }
 
     if(!transaction.partnerUserId) {
-      throw new Error('No partner user id provided');
+      cb(new Error('No partner user id provided'));
     }
 
     var url = expensifyAPIURL + '?action=CreateTransaction';
@@ -189,15 +189,15 @@ var Client = module.exports = function(config) {
     var self = this;
 
     if(!transaction.sso) {
-      throw new Error('No Expensify SSO available');
+      cb(new Error('No Expensify SSO available'));
     }
 
     if(!this.config.expensifyPartnerName) {
-      throw new Error('No Expensify partner name provided');
+      cb(new Error('No Expensify partner name provided'));
     }
 
     if(!transaction.partnerUserId) {
-      throw new Error('No partner user id provided');
+      cb(new Error('No partner user id provided'));
     }
 
     var url = expensifyAPIURL + '?action=CreateDistanceTransaction';
@@ -257,15 +257,15 @@ var Client = module.exports = function(config) {
     var self = this;
 
     if(!transaction.sso) {
-      throw new Error('No Expensify SSO available');
+      cb(new Error('No Expensify SSO available'));
     }
 
     if(!this.config.expensifyPartnerName) {
-      throw new Error('No Expensify partner name provided');
+      cb(new Error('No Expensify partner name provided'));
     }
 
     if(!transaction.partnerUserId) {
-      throw new Error('No partner user id provided');
+      cb(new Error('No partner user id provided'));
     }
 
     var url = expensifyAPIURL + '?action=UploadReceipt';
@@ -327,15 +327,15 @@ var Client = module.exports = function(config) {
     var self = this;
 
     if(!transaction.sso) {
-      throw new Error('No Expensify SSO available');
+      cb(new Error('No Expensify SSO available'));
     }
 
     if(!this.config.expensifyPartnerName) {
-      throw new Error('No Expensify partner name provided');
+      cb(new Error('No Expensify partner name provided'));
     }
 
     if(!transaction.partnerUserId) {
-      throw new Error('No partner user id provided');
+      cb(new Error('No partner user id provided'));
     }
 
     var url = expensifyAPIURL + '?action=FetchReceipt';
