@@ -154,9 +154,9 @@ var Client = module.exports = function(config) {
     request.post({url: url, form: expenseTransaction}, function(e, r, body) {
       if(e) cb(e);
 
-      if(r.statusCode === 200) {
+      if(r && r.statusCode === 200) {
         cb(null, body);
-      } else if(r.statusCode === 407) {
+      } else if(r && r.statusCode === 407) {
         cb(new Error('Expensify sso expired'));
       } else {
         return cb(new Error(body || 'Error creating distance transaction'));
@@ -218,9 +218,9 @@ var Client = module.exports = function(config) {
     request.post({url: url, form: distanceTransaction}, function(e, r, body) {
       if(e) cb(e);
 
-      if(r.statusCode === 200) {
+      if(r && r.statusCode === 200) {
         cb(null, body);
-      } else if(r.statusCode === 407) {
+      } else if(r && r.statusCode === 407) {
         cb(new Error('Expensify sso expired'));
       } else {
         return cb(new Error(body || 'Error creating expense'));
@@ -288,9 +288,9 @@ var Client = module.exports = function(config) {
     request.post({url: url, form: uploadTransaction}, function(e, r, body) {
       if(e) cb(e);
 
-      if(r.statusCode === 200) {
+      if(r && r.statusCode === 200) {
         cb(null, body);
-      } else if(r.statusCode === 407) {
+      } else if(r && r.statusCode === 407) {
         cb(new Error('Expensify sso expired'));
       } else {
         return cb(new Error(body || 'Error uploading receipt'));
@@ -358,9 +358,9 @@ var Client = module.exports = function(config) {
     request.post({url: url, form: fetchTransaction}, function(e, r, body) {
       if(e) cb(e);
 
-      if(r.statusCode === 200) {
+      if(r && r.statusCode === 200) {
         cb(null, body);
-      } else if(r.statusCode === 407) {
+      } else if(r && r.statusCode === 407) {
         cb(new Error('Expensify sso expired'));
       } else {
         return cb(new Error(body || 'Error fetching receipt'));
