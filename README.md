@@ -29,14 +29,28 @@ var expensify = new Expensify({
   expensifyAesKey: <YOUR EXPENSIFY_AES_KEY>,
   expensifyAesIv: <YOUR EXPENSIFY_AES_IV>
 });
+```
+
+Create and store a user id and secret for the the user you'd like to connect
+
+```javascript
+expensify.authenticate({
+  userSecret: 'MyGreatSecret'
+}, function(e, sso) {
+  console.log(sso);
+});
+```
 
 
-//Create and store a user is and secret for the the user you'd like to connect
-var userId = 'testuser@test.com';
-var userSecret = 'MyGreatSecret';
+Get an formatted Authorize URL
 
-var sso = expensify.authenticate({
-  userSecret: userSecret
+```javascript
+expensify.authorizeUrl({
+  sso: '675sd98769sd69sd',
+  userId: 'testuser@test.com',
+  exitTo: 'http://mysite.com/expensify/redirect'
+}, function(e, url) {
+  console.log(url);
 });
 ```
 

@@ -1,7 +1,7 @@
 {
   "name": "expensify",
   "description": "Node.js library to access the Expensify API",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "author": {
     "name": "Brendan Nee",
     "email": "me@bn.ee",
@@ -13,7 +13,7 @@
     "url": "http://github.com/brendannee/node-expensify.git"
   },
   "dependencies": {
-    "request": "~2.55.0"
+    "request": "~2.58.0"
   },
   "main" : ".",
   "engines": {

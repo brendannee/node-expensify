@@ -18,23 +18,25 @@ var Client = module.exports = function(config) {
    *
    *    expensify.authenticate({
    *      userSecret: 'test1324'
+   *    }, function(e, sso) {
+   *      console.log(sso);
    *    });
    **/
-  this.authenticate = function(options) {
+  this.authenticate = function(options, cb) {
     if(!options.userSecret) {
-      throw new Error('No Expensify user secret provided');
+      return cb(new Error('No Expensify user secret provided'));
     }
 
     if(!this.config.expensifyPartnerPassword) {
-      throw new Error('No Expensify partner password provided');
+      return cb(new Error('No Expensify partner password provided'));
     }
 
     if(!this.config.expensifyAesKey) {
-      throw new Error('No Expensify AES key provided');
+      return cb(new Error('No Expensify AES key provided'));
     }
 
     if(!this.config.expensifyAesIv) {
-      throw new Error('No Expensify AES IV provided');
+      return cb(new Error('No Expensify AES IV provided'));
     }
 
     var expires = Math.floor(new Date().getTime() / 1000) + 60 * 30;
@@ -53,7 +55,7 @@ var Client = module.exports = function(config) {
     var sso = cipher.update(text, 'utf-8', 'hex');
     sso += cipher.final('hex');
 
-    return sso;
+    cb(null, sso);
   };
 
   /**
@@ -69,19 +71,21 @@ var Client = module.exports = function(config) {
    *      sso: '675sd98769sd69sd',
    *      userId: 'testuser@test.com',
    *      exitTo: 'http://mysite.com/expensify/redirect'
+   *    }, function(e, url) {
+   *      console.log(url);
    *    });
    **/
-  this.authorizeUrl = function(options) {
+  this.authorizeUrl = function(options, cb) {
     if(!options.sso) {
-      throw new Error('No Expensify SSO available');
+      return cb(new Error('No Expensify SSO available'));
     }
 
     if(!this.config.expensifyPartnerName) {
-      throw new Error('No Expensify partner name provided');
+      return cb(new Error('No Expensify partner name provided'));
     }
 
     if(!options.partnerUserId) {
-      throw new Error('No partner user id provided');
+      return cb(new Error('No partner user id provided'));
     }
 
     var authorizeUrl = expensifyAPIURL;
@@ -94,7 +98,7 @@ var Client = module.exports = function(config) {
       authorizeUrl += '&exitTo=' + options.exitTo;
     }
 
-    return authorizeUrl;
+    cb(null, authorizeUrl);
   };
 
   /**
@@ -118,6 +122,8 @@ var Client = module.exports = function(config) {
    *      comment: 'New tires for my car',
    *      sso: '675sd98769sd69sd',
    *      partnerUserID: 'testuser@test.com'
+   *    }, function(e, body) {
+   *      console.log(body);
    *    });
    **/
   this.createTransaction = function(transaction, cb) {
@@ -183,6 +189,8 @@ var Client = module.exports = function(config) {
    *      comment: 'A trip to the store',
    *      sso: '675sd98769sd69sd',
    *      partnerUserID: 'testuser@test.com'
+   *    }, function(e, body) {
+   *      console.log(body);
    *    });
    **/
   this.createDistanceTransaction = function(transaction, cb) {
@@ -251,6 +259,8 @@ var Client = module.exports = function(config) {
    *      comment: 'A trip to the store',
    *      sso: '675sd98769sd69sd',
    *      partnerUserID: 'testuser@test.com'
+   *    }, function(e, body) {
+   *      console.log(body);
    *    });
    **/
   this.uploadReceipt = function(transaction, cb) {
@@ -321,6 +331,8 @@ var Client = module.exports = function(config) {
    *      comment: 'A trip to the store',
    *      sso: '675sd98769sd69sd',
    *      partnerUserID: 'testuser@test.com'
+   *    }, function(e, body) {
+   *      console.log(body);
    *    });
    **/
   this.fetchReceipt = function(transaction, cb) {
