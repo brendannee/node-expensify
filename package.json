@@ -13,14 +13,14 @@
     "url": "http://github.com/brendannee/node-expensify.git"
   },
   "dependencies": {
-    "request": "~2.58.0"
+    "request": "~2.64.0"
   },
   "main" : ".",
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=0.12.0"
   },
   "licenses": [{
-    "type": "The MIT License",
+    "type": "MIT",
     "url": "http://www.opensource.org/licenses/mit-license.php"
   }]
 }
